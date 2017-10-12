@@ -36,6 +36,7 @@ int MovieHeaderBox::Parse(class mp4Parser* parser, uint32_t start_pos)
         timescale = parser->io->Read32();
         duration = parser->io->Read32();
     }
-    sprintf(parser->debugInfo, "timescale = %d, duration = %d", timescale, duration);
+    parser->duration = duration;
+    parser->timescale = timescale;
     return 0;
 }

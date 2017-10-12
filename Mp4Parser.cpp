@@ -3,6 +3,7 @@
 #include "BaseBox.h"
 #include "DefaultContainerBox.h"
 #include "MovieHeaderBox.h"
+#include "TrackBox.h"
 
 #include <stdio.h>
 #include <QtGlobal>
@@ -12,6 +13,9 @@ mp4Parser::mp4Parser()
     io = new FileReader();
     dummy = new BaseBox(0, 0);
     memset(debugInfo, 0, 4096);
+
+    stream_num = 0;
+    memset(streams, 0, sizeof(Stream)*MAX_STREAM_COUNT);
 }
 
 mp4Parser::~mp4Parser()
@@ -29,23 +33,27 @@ mp4Parser::~mp4Parser()
 
 BaseBox* mp4Parser::AllocBox(uint32_t type, uint32_t size)
 {
+    BaseBox* box = NULL;
     switch(type)
     {
     case FOURCC_moov:
-    case FOURCC_trak:
     case FOURCC_mdia:
     case FOURCC_minf:
     case FOURCC_stbl:
-        return new DefaultContainerBox(type, size);
+        box = new DefaultContainerBox(type, size);
         break;
     case FOURCC_mvhd:
-        return new MovieHeaderBox(type, size);
+        box = new MovieHeaderBox(type, size);
+        break;
+    case FOURCC_trak:
+        box = new TrackBox(type, size);
         break;
     default:
-        return new BaseBox(type, size);
+        box = new BaseBox(type, size);
+        break;
     }
 
-    return NULL;
+    return box;
 }
 
 BaseBox* mp4Parser::ReadBox(uint32_t start_pos)

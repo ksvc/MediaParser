@@ -27,7 +27,8 @@ BaseBox::~BaseBox()
 
 int BaseBox::Parse(class mp4Parser* parser, uint32_t start_pos)
 {
-    qDebug("type = %s\n", this->name);
+    parser;
+    start_pos;
     return 0;
 }
 

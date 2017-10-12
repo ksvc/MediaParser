@@ -23,7 +23,7 @@
          <property name="font">
           <font>
            <family>FangSong</family>
-           <pointsize>18</pointsize>
+           <pointsize>12</pointsize>
           </font>
          </property>
          <property name="readOnly">

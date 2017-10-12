@@ -41,6 +41,8 @@ public:
     Stream streams[MAX_STREAM_COUNT];
 
     char debugInfo[4096];
+    uint64_t duration;
+    uint32_t timescale;
 };
 
 #endif // MP4PARSER_H
