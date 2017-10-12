@@ -16,6 +16,9 @@ mp4Parser::mp4Parser()
 
     stream_num = 0;
     memset(streams, 0, sizeof(Stream)*MAX_STREAM_COUNT);
+
+    duration = 0;
+    timescale = 1;
 }
 
 mp4Parser::~mp4Parser()
