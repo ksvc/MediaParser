@@ -2,6 +2,7 @@
 #include "Mp4Parser.h"
 #include "BaseBox.h"
 #include "DefaultContainerBox.h"
+#include "MovieHeaderBox.h"
 
 #include <stdio.h>
 #include <QtGlobal>
@@ -10,6 +11,7 @@ mp4Parser::mp4Parser()
 {
     io = new FileReader();
     dummy = new BaseBox(0, 0);
+    memset(debugInfo, 0, 4096);
 }
 
 mp4Parser::~mp4Parser()
@@ -35,6 +37,9 @@ BaseBox* mp4Parser::AllocBox(uint32_t type, uint32_t size)
     case FOURCC_minf:
     case FOURCC_stbl:
         return new DefaultContainerBox(type, size);
+        break;
+    case FOURCC_mvhd:
+        return new MovieHeaderBox(type, size);
         break;
     default:
         return new BaseBox(type, size);

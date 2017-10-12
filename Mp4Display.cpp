@@ -5,7 +5,7 @@ mp4Display::mp4Display()
 
 }
 
-void mp4Display::Display(QTreeWidget* tree, mp4Parser* parser)
+void mp4Display::Display(QTreeWidget* tree, QTextEdit* edit, mp4Parser* parser)
 {
     tree->clear();
     QTreeWidgetItem *root = new QTreeWidgetItem(QStringList("mp4"));
@@ -16,6 +16,8 @@ void mp4Display::Display(QTreeWidget* tree, mp4Parser* parser)
     if(mp4 == NULL)
         return;
     ShowBox(root, mp4->childs);
+
+    edit->setText(parser->debugInfo);
 }
 
 void mp4Display::ShowBox(QTreeWidgetItem* treeItem, BaseBox* box)

@@ -30,7 +30,8 @@ SOURCES += \
     FileReader.cpp \
     Mp4Display.cpp \
     Mp4Parser.cpp \
-    DefaultContainerBox.cpp
+    DefaultContainerBox.cpp \
+    MovieHeaderBox.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -39,7 +40,8 @@ HEADERS += \
     Mp4Display.h \
     Mp4Parser.h \
     DefaultContainerBox.h \
-    FourCC.h
+    FourCC.h \
+    MovieHeaderBox.h
 
 FORMS += \
         mainwindow.ui

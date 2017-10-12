@@ -39,6 +39,8 @@ public:
     BaseBox* dummy;
     int stream_num;
     Stream streams[MAX_STREAM_COUNT];
+
+    char debugInfo[4096];
 };
 
 #endif // MP4PARSER_H

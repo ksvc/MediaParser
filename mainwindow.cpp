@@ -41,7 +41,7 @@ void MainWindow::on_openButton_clicked()
     mp4Parser parser;
     parser.Parse("/Users/mayudong/Movies/1.mp4");
     mp4Display display;
-    display.Display(ui->structTree, &parser);
+    display.Display(ui->structTree, ui->hexView, &parser);
 }
 
 QString convert(unsigned char* pData, int len)
