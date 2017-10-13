@@ -8,6 +8,7 @@
 #define FOURCC_trak MKTAG('t','r','a','k')
 #define FOURCC_tkhd MKTAG('t','k','h','d')
 #define FOURCC_mdia MKTAG('m','d','i','a')
+#define FOURCC_mdhd MKTAG('m','d','h','d')
 #define FOURCC_minf MKTAG('m','i','n','f')
 #define FOURCC_stbl MKTAG('s','t','b','l')
 

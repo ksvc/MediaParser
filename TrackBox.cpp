@@ -1,5 +1,4 @@
 #include "TrackBox.h"
-#include "Mp4Parser.h"
 
 TrackBox::TrackBox(uint32_t type, uint32_t size)
     :BaseBox(type, size)

@@ -1,5 +1,4 @@
 #include "MovieHeaderBox.h"
-#include "Mp4Parser.h"
 
 MovieHeaderBox::MovieHeaderBox(uint32_t type, uint32_t size)
     :BaseBox(type, size)

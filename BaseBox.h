@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include "FourCC.h"
+#include "Mp4Parser.h"
 
 class BaseBox
 {

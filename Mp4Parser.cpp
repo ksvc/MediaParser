@@ -5,6 +5,7 @@
 #include "MovieHeaderBox.h"
 #include "TrackBox.h"
 #include "TrackHeaderBox.h"
+#include "MediaHeaderBox.h"
 
 #include <stdio.h>
 #include <QtGlobal>
@@ -56,6 +57,9 @@ BaseBox* mp4Parser::AllocBox(uint32_t type, uint32_t size)
         break;
     case FOURCC_tkhd:
         box = new TrackHeaderBox(type, size);
+        break;
+    case FOURCC_mdhd:
+        box = new MediaHeaderBox(type, size);
         break;
     default:
         box = new BaseBox(type, size);

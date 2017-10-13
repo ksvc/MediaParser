@@ -23,7 +23,14 @@ void mp4Display::Display(QTreeWidget* tree, QTextEdit* edit, mp4Parser* parser)
 
     for(int i=0;i<parser->stream_num;i++)
     {
-        info.sprintf("stream %d:\nwidth = %d\nheight=%d\n", i, parser->streams[i].tkhd_width, parser->streams[i].tkhd_height);
+        info.sprintf("stream %d:\n"
+                     "width = %d\n"
+                     "height=%d\n"
+                     "language = %s\n",
+                     i,
+                     parser->streams[i].tkhd_width,
+                     parser->streams[i].tkhd_height,
+                     parser->streams[i].language);
         edit->append(info);
     }
 
