@@ -50,7 +50,7 @@ int TrackHeaderBox::Parse(class mp4Parser* parser, uint32_t start_pos)
         io->Read32();//matrix
     }
 
-    Stream* stream = &parser->streams[parser->stream_num-1];
+    Stream* stream = parser->streams[parser->stream_num-1];
     stream->tkhd_width = io->Read32()>>16;
     stream->tkhd_height = io->Read32()>>16;
 

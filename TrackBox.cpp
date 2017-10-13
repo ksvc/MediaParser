@@ -18,8 +18,7 @@ int TrackBox::Parse(class mp4Parser* parser, uint32_t start_pos)
         return -1;
     }
 
-    parser->streams[parser->stream_num].index = parser->stream_num;
-    parser->stream_num++;
+    parser->AddStream();
 
     int index = 0;
     while(index < this->size-8)

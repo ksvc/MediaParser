@@ -17,7 +17,7 @@ mp4Parser::mp4Parser()
     memset(debugInfo, 0, 4096);
 
     stream_num = 0;
-    memset(streams, 0, sizeof(Stream)*MAX_STREAM_COUNT);
+    memset(streams, 0, sizeof(Stream*)*MAX_STREAM_COUNT);
 
     duration = 0;
     timescale = 1;
@@ -35,6 +35,11 @@ mp4Parser::~mp4Parser()
     if(dummy != NULL)
     {
         DestroyBox(dummy);
+    }
+    for(int i=0;i<this->stream_num;i++)
+    {
+        DeleteStream(this->streams[i]);
+        this->streams[i] = NULL;
     }
 }
 
@@ -105,6 +110,23 @@ void mp4Parser::DestroyBox(BaseBox* root)
 BaseBox* mp4Parser::GetParseResult()
 {
     return dummy;
+}
+
+Stream* mp4Parser::AddStream()
+{
+    Stream* s = new Stream;
+    memset(s, 0, sizeof(Stream));
+    s->index = this->stream_num;
+    this->streams[this->stream_num] = s;
+    this->stream_num++;
+    return s;
+}
+
+void mp4Parser::DeleteStream(Stream* stream)
+{
+    if(!stream)
+        return;
+    delete stream;
 }
 
 int mp4Parser::Parse(const char* filename)

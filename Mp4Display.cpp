@@ -28,9 +28,9 @@ void mp4Display::Display(QTreeWidget* tree, QTextEdit* edit, mp4Parser* parser)
                      "height=%d\n"
                      "language = %s\n",
                      i,
-                     parser->streams[i].tkhd_width,
-                     parser->streams[i].tkhd_height,
-                     parser->streams[i].language);
+                     parser->streams[i]->tkhd_width,
+                     parser->streams[i]->tkhd_height,
+                     parser->streams[i]->language);
         edit->append(info);
     }
 

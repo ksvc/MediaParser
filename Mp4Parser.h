@@ -36,11 +36,13 @@ public:
     BaseBox* AllocBox(uint32_t type, uint32_t size);
     void AddBox(BaseBox* root, BaseBox* new_box);
     void DestroyBox(BaseBox* root);
+    Stream* AddStream();
+    void DeleteStream(Stream* stream);
 public:
     FileReader* io;
     BaseBox* dummy;
     int stream_num;
-    Stream streams[MAX_STREAM_COUNT];
+    Stream* streams[MAX_STREAM_COUNT];
 
     char debugInfo[4096];
     uint64_t duration;

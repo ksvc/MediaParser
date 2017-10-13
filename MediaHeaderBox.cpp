@@ -49,6 +49,6 @@ int MediaHeaderBox::Parse(class mp4Parser* parser, uint32_t start_pos)
     }
 
     uint16_t language = io->Read16();
-    make_language_iso639(language, parser->streams[parser->stream_num-1].language);
+    make_language_iso639(language, parser->streams[parser->stream_num-1]->language);
     return 0;
 }
