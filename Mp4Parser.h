@@ -10,6 +10,8 @@ typedef struct Stream
 {
     int index;
     uint32_t type;
+    int tkhd_width;
+    int tkhd_height;
     int width;
     int height;
     int channel_count;
@@ -43,6 +45,8 @@ public:
     char debugInfo[4096];
     uint64_t duration;
     uint32_t timescale;
+    uint32_t width;
+    uint32_t height;
 };
 
 #endif // MP4PARSER_H

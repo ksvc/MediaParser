@@ -4,6 +4,7 @@
 #include "DefaultContainerBox.h"
 #include "MovieHeaderBox.h"
 #include "TrackBox.h"
+#include "TrackHeaderBox.h"
 
 #include <stdio.h>
 #include <QtGlobal>
@@ -19,6 +20,8 @@ mp4Parser::mp4Parser()
 
     duration = 0;
     timescale = 1;
+    width = 0;
+    height = 0;
 }
 
 mp4Parser::~mp4Parser()
@@ -50,6 +53,9 @@ BaseBox* mp4Parser::AllocBox(uint32_t type, uint32_t size)
         break;
     case FOURCC_trak:
         box = new TrackBox(type, size);
+        break;
+    case FOURCC_tkhd:
+        box = new TrackHeaderBox(type, size);
         break;
     default:
         box = new BaseBox(type, size);

@@ -20,6 +20,13 @@ void mp4Display::Display(QTreeWidget* tree, QTextEdit* edit, mp4Parser* parser)
     QString info;
     info.sprintf("duration = %.02f\n", (float)parser->duration/parser->timescale);
     edit->setText(info);
+
+    for(int i=0;i<parser->stream_num;i++)
+    {
+        info.sprintf("stream %d:\nwidth = %d\nheight=%d\n", i, parser->streams[i].tkhd_width, parser->streams[i].tkhd_height);
+        edit->append(info);
+    }
+
 }
 
 void mp4Display::ShowBox(QTreeWidgetItem* treeItem, BaseBox* box)

@@ -32,7 +32,8 @@ SOURCES += \
     Mp4Parser.cpp \
     DefaultContainerBox.cpp \
     MovieHeaderBox.cpp \
-    TrackBox.cpp
+    TrackBox.cpp \
+    TrackHeaderBox.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -43,7 +44,8 @@ HEADERS += \
     DefaultContainerBox.h \
     FourCC.h \
     MovieHeaderBox.h \
-    TrackBox.h
+    TrackBox.h \
+    TrackHeaderBox.h
 
 FORMS += \
         mainwindow.ui
