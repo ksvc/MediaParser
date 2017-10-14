@@ -34,7 +34,8 @@ SOURCES += \
     MovieHeaderBox.cpp \
     TrackBox.cpp \
     TrackHeaderBox.cpp \
-    MediaHeaderBox.cpp
+    MediaHeaderBox.cpp \
+    HandlerRefBox.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -47,7 +48,8 @@ HEADERS += \
     MovieHeaderBox.h \
     TrackBox.h \
     TrackHeaderBox.h \
-    MediaHeaderBox.h
+    MediaHeaderBox.h \
+    HandlerRefBox.h
 
 FORMS += \
         mainwindow.ui

@@ -6,6 +6,7 @@
 #include "TrackBox.h"
 #include "TrackHeaderBox.h"
 #include "MediaHeaderBox.h"
+#include "HandlerRefBox.h"
 
 #include <stdio.h>
 #include <QtGlobal>
@@ -65,6 +66,9 @@ BaseBox* mp4Parser::AllocBox(uint32_t type, uint32_t size)
         break;
     case FOURCC_mdhd:
         box = new MediaHeaderBox(type, size);
+        break;
+    case FOURCC_hdlr:
+        box = new HandlerRefBox(type, size);
         break;
     default:
         box = new BaseBox(type, size);
@@ -126,6 +130,9 @@ void mp4Parser::DeleteStream(Stream* stream)
 {
     if(!stream)
         return;
+    if(stream->handler != NULL)
+        delete stream->handler;
+
     delete stream;
 }
 

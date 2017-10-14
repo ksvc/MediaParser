@@ -5,6 +5,19 @@ mp4Display::mp4Display()
 
 }
 
+static char* getHandlerType(uint32_t type)
+{
+    if(type == HANDLER_AUDIO)
+        return "Audio";
+    if(type == HANDLER_VIDEO)
+        return "Video";
+    if(type == HANDLER_HINT)
+        return "Hint";
+    if(type == HANDLER_META)
+        return "meta";
+    return "Unkown";
+}
+
 void mp4Display::Display(QTreeWidget* tree, QTextEdit* edit, mp4Parser* parser)
 {
     tree->clear();
@@ -23,14 +36,16 @@ void mp4Display::Display(QTreeWidget* tree, QTextEdit* edit, mp4Parser* parser)
 
     for(int i=0;i<parser->stream_num;i++)
     {
-        info.sprintf("stream %d:\n"
+        info.sprintf("stream %d:%s\n"
                      "width = %d\n"
                      "height=%d\n"
-                     "language = %s\n",
-                     i,
+                     "language = %s\n"
+                     "handler = %s\n",
+                     i, getHandlerType(parser->streams[i]->type),
                      parser->streams[i]->tkhd_width,
                      parser->streams[i]->tkhd_height,
-                     parser->streams[i]->language);
+                     parser->streams[i]->language,
+                     parser->streams[i]->handler);
         edit->append(info);
     }
 

@@ -18,6 +18,7 @@ typedef struct Stream
     int sample_size;
     int sample_rate;
     char language[4];
+    char* handler;
 }Stream;
 
 class BaseBox;
