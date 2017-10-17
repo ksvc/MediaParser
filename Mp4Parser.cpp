@@ -7,6 +7,7 @@
 #include "TrackHeaderBox.h"
 #include "MediaHeaderBox.h"
 #include "HandlerRefBox.h"
+#include "SampleDescBox.h"
 
 #include <stdio.h>
 #include <QtGlobal>
@@ -69,6 +70,9 @@ BaseBox* mp4Parser::AllocBox(uint32_t type, uint32_t size)
         break;
     case FOURCC_hdlr:
         box = new HandlerRefBox(type, size);
+        break;
+    case FOURCC_stsd:
+        box = new SampleDescBox(type, size);
         break;
     default:
         box = new BaseBox(type, size);
