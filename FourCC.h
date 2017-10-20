@@ -13,12 +13,12 @@
 #define FOURCC_minf MKTAG('m','i','n','f')
 #define FOURCC_stbl MKTAG('s','t','b','l')
 #define FOURCC_stsd MKTAG('s','t','s','d')
+#define FOURCC_udta MKTAG('u','d','t','a')
 
 
 #define HANDLER_VIDEO MKTAG('v','i','d','e')
 #define HANDLER_AUDIO MKTAG('s','o','u','n')
 #define HANDLER_HINT MKTAG('h','i','n','t')
-#define HANDLER_META MKTAG('m','e','t','a')
 #define HANDLER_META MKTAG('m','e','t','a')
 
 #endif // FOURCC_H
