@@ -39,7 +39,11 @@ void MainWindow::on_openButton_clicked()
 //    }
 
     mp4Parser parser;
+#if defined(Q_OS_WIN32)
+    parser.Parse("d:\\1.mp4");
+#else
     parser.Parse("/Users/mayudong/Movies/1.mp4");
+#endif
     mp4Display display;
     display.Display(ui->structTree, ui->hexView, &parser);
 }

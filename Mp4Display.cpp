@@ -36,22 +36,44 @@ void mp4Display::Display(QTreeWidget* tree, QTextEdit* edit, mp4Parser* parser)
 
     for(int i=0;i<parser->stream_num;i++)
     {
-        info.sprintf("stream %d:%s\n"
-                     "tkhd_width = %d\n"
-                     "tkhd_height=%d\n"
-                     "language = %s\n"
-                     "handler = %s\n"
-                     "width = %d\n"
-                     "height = %d\n"
-                     "codec = %s\n",
-                     i, getHandlerType(parser->streams[i]->type),
-                     parser->streams[i]->tkhd_width,
-                     parser->streams[i]->tkhd_height,
-                     parser->streams[i]->language,
-                     parser->streams[i]->handler,
-                     parser->streams[i]->width,
-                     parser->streams[i]->height,
-                     parser->streams[i]->codec_name);
+        Stream* s = parser->streams[i];
+        if(s->type == HANDLER_VIDEO)
+        {
+            info.sprintf("stream %d:%s\n"
+                         "tkhd_width = %d\n"
+                         "tkhd_height=%d\n"
+                         "language = %s\n"
+                         "handler = %s\n"
+                         "width = %d\n"
+                         "height = %d\n"
+                         "codec = %s\n",
+                         i, getHandlerType(s->type),
+                         s->tkhd_width,
+                         s->tkhd_height,
+                         s->language,
+                         s->handler,
+                         s->width,
+                         s->height,
+                         s->codec_name);
+        }
+        if(s->type == HANDLER_AUDIO)
+        {
+            info.sprintf("stream %d:%s\n"
+                         "language = %s\n"
+                         "handler = %s\n"
+                         "channel_count = %d\n"
+                         "sample_size = %d\n"
+                         "sample_rate = %d\n"
+                         "codec = %s\n",
+                         i, getHandlerType(s->type),
+                         s->language,
+                         s->handler,
+                         s->channel_count,
+                         s->sample_size,
+                         s->sample_rate,
+                         s->codec_name);
+        }
+
         edit->append(info);
     }
 

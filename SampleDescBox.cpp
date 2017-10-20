@@ -1,5 +1,6 @@
 #include "SampleDescBox.h"
 #include "VisualSampleEntry.h"
+#include "AudioSampleEntry.h"
 
 SampleDescBox::SampleDescBox(uint32_t type, uint32_t size)
     :BaseBox(type, size)
@@ -35,7 +36,7 @@ int SampleDescBox::Parse(class mp4Parser* parser, uint32_t start_pos)
         }
         else if(s->type == HANDLER_AUDIO)
         {
-            box = new BaseBox(type, size);
+            box = new AudioSampleEntry(type, size);
         }
         else
         {
