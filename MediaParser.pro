@@ -58,4 +58,4 @@ HEADERS += \
     AudioSampleEntry.h
 
 FORMS += \
-        mainwindow.ui
+    MainWindow.ui
