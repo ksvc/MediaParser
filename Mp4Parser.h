@@ -19,6 +19,7 @@ typedef struct Stream
     int sample_rate;
     char language[4];
     char* handler;
+    char codec_name[32];
 }Stream;
 
 class BaseBox;

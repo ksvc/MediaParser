@@ -36,7 +36,8 @@ SOURCES += \
     TrackHeaderBox.cpp \
     MediaHeaderBox.cpp \
     HandlerRefBox.cpp \
-    SampleDescBox.cpp
+    SampleDescBox.cpp \
+    VisualSampleEntry.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -51,7 +52,8 @@ HEADERS += \
     TrackHeaderBox.h \
     MediaHeaderBox.h \
     HandlerRefBox.h \
-    SampleDescBox.h
+    SampleDescBox.h \
+    VisualSampleEntry.h
 
 FORMS += \
         mainwindow.ui
