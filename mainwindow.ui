@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>750</width>
     <height>600</height>
    </rect>
   </property>
@@ -18,16 +18,16 @@
     <item row="0" column="0">
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="leftMargin">
-       <number>20</number>
+       <number>10</number>
       </property>
       <property name="topMargin">
-       <number>20</number>
+       <number>10</number>
       </property>
       <property name="rightMargin">
-       <number>20</number>
+       <number>10</number>
       </property>
       <property name="bottomMargin">
-       <number>20</number>
+       <number>10</number>
       </property>
       <item>
        <widget class="QSplitter" name="splitter">
@@ -47,7 +47,11 @@
           </property>
          </column>
         </widget>
-        <widget class="QTextEdit" name="hexView"/>
+        <widget class="QTextEdit" name="hexView">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
        </widget>
       </item>
       <item>
@@ -56,7 +60,7 @@
          <number>0</number>
         </property>
         <property name="topMargin">
-         <number>20</number>
+         <number>10</number>
         </property>
         <property name="rightMargin">
          <number>0</number>
@@ -65,7 +69,11 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QLineEdit" name="filePathEdit"/>
+         <widget class="QLineEdit" name="filePathEdit">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QPushButton" name="openButton">
@@ -81,6 +89,13 @@
    </layout>
   </widget>
  </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>openButton</tabstop>
+  <tabstop>filePathEdit</tabstop>
+  <tabstop>structTree</tabstop>
+  <tabstop>hexView</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
