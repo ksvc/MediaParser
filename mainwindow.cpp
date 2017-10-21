@@ -35,7 +35,11 @@ void MainWindow::on_openButton_clicked()
 //        QStringList files = dlg->selectedFiles();
 //        QString fileName = files.at(0);
 //        this->ui->filePathEdit->setText(fileName);
-//        QMessageBox::information(this, "dd", fileName);
+
+//        mp4Parser parser;
+//        parser.Parse(fileName.toLocal8Bit().data());
+//        mp4Display display;
+//        display.Display(ui->structTree, ui->hexView, &parser);
 //    }
 
     mp4Parser parser;

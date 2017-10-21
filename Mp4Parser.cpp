@@ -156,6 +156,11 @@ int mp4Parser::Parse(const char* filename)
 
     uint32_t cur_pos = 0;
     int file_size = io->GetLength();
+    if(file_size <= 0)
+    {
+        return -1;
+    }
+
     while(cur_pos < file_size)
     {
         BaseBox* box = ReadBox(cur_pos);
