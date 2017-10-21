@@ -4,23 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "FileReader.h"
-
-#define MAX_STREAM_COUNT 10
-typedef struct Stream
-{
-    int index;
-    uint32_t type;
-    int tkhd_width;
-    int tkhd_height;
-    int width;
-    int height;
-    int channel_count;
-    int sample_size;
-    int sample_rate;
-    char language[4];
-    char* handler;
-    char codec_name[32];
-}Stream;
+#include "Mp4Define.h"
 
 class BaseBox;
 class mp4Parser

@@ -34,6 +34,7 @@ void mp4Display::Display(QTreeWidget* tree, QTextEdit* edit, mp4Parser* parser)
     info.sprintf("duration = %.02f\n", (float)parser->duration/parser->timescale);
     edit->setText(info);
 
+
     for(int i=0;i<parser->stream_num;i++)
     {
         Stream* s = parser->streams[i];
@@ -73,8 +74,18 @@ void mp4Display::Display(QTreeWidget* tree, QTextEdit* edit, mp4Parser* parser)
                          s->sample_rate,
                          s->codec_name);
         }
-
         edit->append(info);
+        if(s->stts_count > 0)
+        {
+            info.sprintf("stts_count = %d", s->stts_count);
+            edit->append(info);
+            for(int j=0;j<s->stts_count;j++)
+            {
+                info.sprintf("sample_count = %d, delta = %d", s->stts_data[j].sample_count, s->stts_data[j].sample_delta);
+                edit->append(info);
+            }
+        }
+        edit->append("\n");
     }
 
 }

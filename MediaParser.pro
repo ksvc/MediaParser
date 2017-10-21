@@ -38,7 +38,8 @@ SOURCES += \
     HandlerRefBox.cpp \
     SampleDescBox.cpp \
     VisualSampleEntry.cpp \
-    AudioSampleEntry.cpp
+    AudioSampleEntry.cpp \
+    TimeToSampleBox.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -55,7 +56,9 @@ HEADERS += \
     HandlerRefBox.h \
     SampleDescBox.h \
     VisualSampleEntry.h \
-    AudioSampleEntry.h
+    AudioSampleEntry.h \
+    TimeToSampleBox.h \
+    Mp4Define.h
 
 FORMS += \
     MainWindow.ui
