@@ -28,6 +28,9 @@ typedef struct Stream
 
     int stts_count;
     stts_entry* stts_data;
+
+    uint32_t stss_count;
+    uint32_t* stss_data;
 }Stream;
 
 

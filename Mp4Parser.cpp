@@ -9,6 +9,7 @@
 #include "HandlerRefBox.h"
 #include "SampleDescBox.h"
 #include "TimeToSampleBox.h"
+#include "SyncSampleBox.h"
 
 #include <stdio.h>
 #include <QtGlobal>
@@ -79,6 +80,9 @@ BaseBox* mp4Parser::AllocBox(uint32_t type, uint32_t size)
     case FOURCC_stts:
         box = new TimeToSampleBox(type, size);
         break;
+    case FOURCC_stss:
+        box = new SyncSampleBox(type, size);
+        break;
     default:
         box = new BaseBox(type, size);
         break;
@@ -143,6 +147,8 @@ void mp4Parser::DeleteStream(Stream* stream)
         delete stream->handler;
     if(stream->stts_data != NULL)
         delete[] stream->stts_data;
+    if(stream->stss_data != NULL)
+        delete[] stream->stss_data;
     delete stream;
 }
 
