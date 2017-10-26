@@ -40,6 +40,9 @@ typedef struct Stream
 
     uint32_t ctts_count;
     ctts_entry* ctts_data;
+
+    uint32_t stco_count;
+    uint64_t* stco_data;
 }Stream;
 
 

@@ -86,9 +86,11 @@ void mp4Display::Display(QTreeWidget* tree, QTextEdit* edit, mp4Parser* parser)
             }
         }
         info.sprintf("sync frame count = %d\n"
-                     "ctts count = %d\n",
+                     "ctts count = %d\n"
+                     "chunk count = %d\n",
                      s->stss_count,
-                     s->ctts_count);
+                     s->ctts_count,
+                     s->stco_count);
         edit->append(info);
         edit->append("\n");
     }

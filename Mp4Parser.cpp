@@ -11,6 +11,7 @@
 #include "TimeToSampleBox.h"
 #include "SyncSampleBox.h"
 #include "CompositionOffsetBox.h"
+#include "ChunkOffsetBox.h"
 
 #include <stdio.h>
 #include <QtGlobal>
@@ -87,6 +88,10 @@ BaseBox* mp4Parser::AllocBox(uint32_t type, uint32_t size)
     case FOURCC_ctts:
         box = new CompositionOffsetBox(type, size);
         break;
+    case FOURCC_stco:
+    case FOURCC_co64:
+        box = new ChunkOffsetBox(type, size);
+        break;
     default:
         box = new BaseBox(type, size);
         break;
@@ -143,19 +148,22 @@ Stream* mp4Parser::AddStream()
     return s;
 }
 
-void mp4Parser::DeleteStream(Stream* stream)
+void mp4Parser::DeleteStream(Stream* s)
 {
-    if(!stream)
+    if(!s)
         return;
-    if(stream->handler != NULL)
-        delete stream->handler;
-    if(stream->stts_data != NULL)
-        delete[] stream->stts_data;
-    if(stream->stss_data != NULL)
-        delete[] stream->stss_data;
-    if(stream->ctts_data != NULL)
-        delete[] stream->ctts_data;
-    delete stream;
+    if(s->handler)
+        delete s->handler;
+    if(s->stts_data)
+        delete[] s->stts_data;
+    if(s->stss_data)
+        delete[] s->stss_data;
+    if(s->ctts_data)
+        delete[] s->ctts_data;
+    if(s->stco_data)
+        delete[] s->stco_data;
+
+    delete s;
 }
 
 int mp4Parser::Parse(const char* filename)
