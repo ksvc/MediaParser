@@ -15,6 +15,7 @@
 #define FOURCC_stsd MKTAG('s','t','s','d')
 #define FOURCC_stts MKTAG('s','t','t','s')
 #define FOURCC_stss MKTAG('s','t','s','s')
+#define FOURCC_ctts MKTAG('c','t','t','s')
 #define FOURCC_udta MKTAG('u','d','t','a')
 
 

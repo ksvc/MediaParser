@@ -40,7 +40,8 @@ SOURCES += \
     VisualSampleEntry.cpp \
     AudioSampleEntry.cpp \
     TimeToSampleBox.cpp \
-    SyncSampleBox.cpp
+    SyncSampleBox.cpp \
+    CompositionOffsetBox.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -60,7 +61,8 @@ HEADERS += \
     AudioSampleEntry.h \
     TimeToSampleBox.h \
     Mp4Define.h \
-    SyncSampleBox.h
+    SyncSampleBox.h \
+    CompositionOffsetBox.h
 
 FORMS += \
     MainWindow.ui
