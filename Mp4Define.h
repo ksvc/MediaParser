@@ -17,6 +17,13 @@ typedef struct ctts_entry
     int32_t sample_offset;
 }ctts_entry;
 
+typedef struct stsc_entry
+{
+    uint32_t first_chunk;
+    uint32_t samples_per_chunk;
+    uint32_t sample_description_index;
+}stsc_entry;
+
 typedef struct Stream
 {
     int index;
@@ -43,6 +50,9 @@ typedef struct Stream
 
     uint32_t stco_count;
     uint64_t* stco_data;
+
+    uint32_t stsc_count;
+    stsc_entry* stsc_data;
 }Stream;
 
 

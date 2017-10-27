@@ -42,7 +42,8 @@ SOURCES += \
     TimeToSampleBox.cpp \
     SyncSampleBox.cpp \
     CompositionOffsetBox.cpp \
-    ChunkOffsetBox.cpp
+    ChunkOffsetBox.cpp \
+    SampleToChunkBox.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -64,7 +65,8 @@ HEADERS += \
     Mp4Define.h \
     SyncSampleBox.h \
     CompositionOffsetBox.h \
-    ChunkOffsetBox.h
+    ChunkOffsetBox.h \
+    SampleToChunkBox.h
 
 FORMS += \
     MainWindow.ui
