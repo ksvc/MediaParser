@@ -43,7 +43,8 @@ SOURCES += \
     SyncSampleBox.cpp \
     CompositionOffsetBox.cpp \
     ChunkOffsetBox.cpp \
-    SampleToChunkBox.cpp
+    SampleToChunkBox.cpp \
+    SampleSizeBox.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -66,7 +67,8 @@ HEADERS += \
     SyncSampleBox.h \
     CompositionOffsetBox.h \
     ChunkOffsetBox.h \
-    SampleToChunkBox.h
+    SampleToChunkBox.h \
+    SampleSizeBox.h
 
 FORMS += \
     MainWindow.ui

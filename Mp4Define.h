@@ -53,6 +53,10 @@ typedef struct Stream
 
     uint32_t stsc_count;
     stsc_entry* stsc_data;
+
+    uint32_t default_sample_size;
+    uint32_t stsz_count;
+    uint32_t* stsz_data;
 }Stream;
 
 
