@@ -52,25 +52,50 @@ void MainWindow::on_openButton_clicked()
     display.Display(ui->structTree, ui->hexView, &parser);
 }
 
-QString convert(unsigned char* pData, int len)
+char get_printable_char(unsigned char c)
 {
-    QString strResult;
-    for (int i = 0; i < len; i++)
-    {
-        QString tmp;
-        tmp.sprintf("%02X ", pData[i]);
-        strResult.append(tmp);
-    }
-    return strResult;
+    if(c >= 128 || c <=32)
+        return '.';
+    else
+        return c;
 }
 
-void MainWindow::displayHex(unsigned char* pData, int& len)
+void MainWindow::displayHex(unsigned char* pData, int len)
 {
     Q_ASSERT(pData && len >= 0);
 
     len = MIN(len, 1024);
-    QString str = convert(pData, len);
-    this->ui->hexView->setText(str);
+    int rows = len / 16 + (len%16==0?0:1);
+    int index = 0;
+    for(int i=0;i<rows;i++)
+    {
+        QString str;
+        QString str1;
+        QString str2;
+        int num = 16;
+        if((i+1)*16 > len)
+        {
+            num = len - i*16;
+        }
+        for(int j=0;j<num;j++)
+        {
+            QString tmp;
+            tmp.sprintf("%02X ", pData[index]);
+            str1.append(tmp);
+            tmp.sprintf("%c", get_printable_char(pData[index]));
+            str2.append(tmp);
+            index++;
+        }
+        if(num < 16)
+        {
+            for(int x=0;x<16-num;x++)
+            {
+                str1 += "   ";
+            }
+        }
+        str = str1 + "    " + str2;
+        ui->hexView->append(str);
+    }
 }
 
 void MainWindow::setHighlight(int start, int len)

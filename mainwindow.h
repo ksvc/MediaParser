@@ -16,7 +16,7 @@ public:
     ~MainWindow();
 
 private:
-    void displayHex(unsigned char* pData, int& len);
+    void displayHex(unsigned char* pData, int len);
     void setHighlight(int start, int len);
     void clearDisplay();
 

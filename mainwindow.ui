@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>750</width>
+    <width>920</width>
     <height>600</height>
    </rect>
   </property>
@@ -48,6 +48,9 @@
          </column>
         </widget>
         <widget class="QTextEdit" name="hexView">
+         <property name="lineWrapMode">
+          <enum>QTextEdit::NoWrap</enum>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
