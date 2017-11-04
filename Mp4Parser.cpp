@@ -20,7 +20,19 @@
 
 mp4Parser::mp4Parser()
 {
-    io = new FileReader();
+    this->io = NULL;
+    this->init();
+}
+
+mp4Parser::mp4Parser(FileReader* io)
+{
+    this->io = io;
+    this->init();
+}
+
+void mp4Parser::init()
+{
+    this->inner_io = NULL;
     dummy = new BaseBox(0, 0);
     memset(debugInfo, 0, 4096);
 
@@ -35,10 +47,10 @@ mp4Parser::mp4Parser()
 
 mp4Parser::~mp4Parser()
 {
-    if(io != NULL)
+    if(inner_io != NULL)
     {
-        delete io;
-        io = NULL;
+        delete inner_io;
+        inner_io = NULL;
     }
     if(dummy != NULL)
     {
@@ -115,6 +127,7 @@ BaseBox* mp4Parser::ReadBox(uint32_t start_pos)
     uint32_t type = io->Read32();
     BaseBox* box = AllocBox(type, size);
 
+    box->SetPosition(start_pos);
     box->Parse(this, start_pos+8);
 
     return box;
@@ -182,6 +195,12 @@ void mp4Parser::DeleteStream(Stream* s)
 
 int mp4Parser::Parse(const char* filename)
 {
+    if(io == NULL)
+    {
+        inner_io = new FileReader();
+        io = inner_io;
+    }
+
     int ret = io->Open(filename);
     if(ret != 0)
     {

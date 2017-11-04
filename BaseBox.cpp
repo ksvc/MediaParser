@@ -16,6 +16,8 @@ BaseBox::BaseBox(uint32_t type, uint32_t size)
 
     this->childs = NULL;
     this->next = NULL;
+
+    this->start_pos = 0;
 }
 
 BaseBox::~BaseBox()
@@ -23,6 +25,11 @@ BaseBox::~BaseBox()
     this->size = 0;
     this->type = 0;
     memset(this->name, 0, 5);
+}
+
+void BaseBox::SetPosition(uint32_t start)
+{
+    this->start_pos = start;
 }
 
 int BaseBox::Parse(class mp4Parser* parser, uint32_t start_pos)

@@ -24,6 +24,9 @@ private slots:
     void on_openButton_clicked();
 
 private:
+    class FileReader* reader;
+    class mp4Parser* parser;
+private:
     Ui::MainWindow *ui;
 };
 

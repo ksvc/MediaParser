@@ -20,7 +20,7 @@ int MovieHeaderBox::Parse(class mp4Parser* parser, uint32_t start_pos)
     uint32_t timescale, duration;
 
     uint8_t version = io->Read8();
-    uint32_t flags = io->Read24();
+    io->Read24(); //flag
 
     if(version == 1)
     {

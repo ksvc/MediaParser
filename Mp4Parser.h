@@ -11,7 +11,10 @@ class mp4Parser
 {
 public:
     mp4Parser();
+    mp4Parser(FileReader* io);
     ~mp4Parser();
+private:
+    void init();
 
 public:
     int Parse(const char* filename);
@@ -26,6 +29,7 @@ public:
     void DeleteStream(Stream* stream);
 public:
     FileReader* io;
+    FileReader* inner_io;
     BaseBox* dummy;
     int stream_num;
     Stream* streams[MAX_STREAM_COUNT];

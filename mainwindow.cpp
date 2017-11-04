@@ -19,11 +19,17 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    this->reader = NULL;
+    this->parser = NULL;
     ui->setupUi(this);
 }
 
 MainWindow::~MainWindow()
 {
+    if(this->reader)
+        delete this->reader;
+    if(this->parser)
+        delete this->parser;
     delete ui;
 }
 
@@ -42,14 +48,19 @@ void MainWindow::on_openButton_clicked()
 //        display.Display(ui->structTree, ui->hexView, &parser);
 //    }
 
-    mp4Parser parser;
+    if(this->reader == NULL)
+    {
+        this->reader = new FileReader();
+        this->parser = new mp4Parser(reader);
+    }
+
 #if defined(Q_OS_WIN32)
-    parser.Parse("d:\\1.mp4");
+    parser->Parse("d:\\1.mp4");
 #else
-    parser.Parse("/Users/mayudong/Movies/1.mp4");
+    parser->Parse("/Users/mayudong/Movies/1.mp4");
 #endif
     mp4Display display;
-    display.Display(ui->structTree, ui->baseInfoTextEdit, &parser);
+    display.Display(ui->structTree, ui->baseInfoTextEdit, parser);
 }
 
 char get_printable_char(unsigned char c)

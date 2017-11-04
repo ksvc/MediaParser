@@ -42,6 +42,7 @@ int SampleDescBox::Parse(class mp4Parser* parser, uint32_t start_pos)
         {
             box = new BaseBox(type, size);
         }
+        box->SetPosition(start_pos+index);
         box->Parse(parser, start_pos+index+8);
         parser->AddBox(this, box);
         index += box->size;
