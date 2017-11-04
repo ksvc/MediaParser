@@ -49,7 +49,7 @@ void MainWindow::on_openButton_clicked()
     parser.Parse("/Users/mayudong/Movies/1.mp4");
 #endif
     mp4Display display;
-    display.Display(ui->structTree, ui->hexView, &parser);
+    display.Display(ui->structTree, ui->baseInfoTextEdit, &parser);
 }
 
 char get_printable_char(unsigned char c)

@@ -98,7 +98,9 @@ void mp4Display::Display(QTreeWidget* tree, QTextEdit* edit, mp4Parser* parser)
         edit->append(info);
         edit->append("\n");
     }
-
+    QTextCursor cur = edit->textCursor();
+    cur.setPosition(1);
+    edit->setTextCursor(cur);
 }
 
 void mp4Display::ShowBox(QTreeWidgetItem* treeItem, BaseBox* box)
