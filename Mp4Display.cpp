@@ -21,7 +21,7 @@ static char* getHandlerType(uint32_t type)
 void mp4Display::Display(QTreeWidget* tree, QTextEdit* edit, mp4Parser* parser)
 {
     tree->clear();
-    QTreeWidgetItem *root = new QTreeWidgetItem(QStringList("mp4"));
+    QTreeWidgetItem *root = new QTreeWidgetItem(QStringList("root"));
     tree->addTopLevelItem(root);
     root->setExpanded(true);
 
@@ -109,6 +109,10 @@ void mp4Display::ShowBox(QTreeWidgetItem* treeItem, BaseBox* box)
         return;
 
     QTreeWidgetItem *item = new QTreeWidgetItem(QStringList(box->name));
+
+    QVariant value = QVariant::fromValue((void *)box);
+    item->setData(0, Qt::UserRole, value);
+
     treeItem->addChild(item);
 
     if(box->childs != NULL)

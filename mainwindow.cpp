@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 #include <QMessageBox>
 #include <qtextedit.h>
 #include <qtreewidget.h>
@@ -61,6 +60,7 @@ void MainWindow::on_openButton_clicked()
 #endif
     mp4Display display;
     display.Display(ui->structTree, ui->baseInfoTextEdit, parser);
+    displayHexFromReader(reader, 0, 1024);
 }
 
 char get_printable_char(unsigned char c)
@@ -69,6 +69,17 @@ char get_printable_char(unsigned char c)
         return '.';
     else
         return c;
+}
+
+void MainWindow::displayHexFromReader(class FileReader* reader, int start, int len)
+{
+    len = MIN(len, 1024);
+    unsigned char* buffer = new unsigned char[len];
+    reader->SetPos(start);
+    reader->ReadBuffer((char*)buffer, len);
+    this->displayHex(buffer, len);
+    delete[] buffer;
+    setHighlight(0, 0);
 }
 
 void MainWindow::displayHex(unsigned char* pData, int len)
@@ -137,4 +148,23 @@ void MainWindow::clearDisplay()
     QTreeWidget* tree = this->ui->structTree;
     tree->clear();
     this->ui->hexView->clear();
+}
+
+
+BaseBox* MainWindow::getItemBox(QTreeWidgetItem* item)
+{
+    BaseBox* box = NULL;
+    QVariant value = item->data(0, Qt::UserRole);
+    box = (BaseBox*)value.value<void *>();
+    return box;
+}
+
+void MainWindow::on_structTree_itemClicked(QTreeWidgetItem * item, int column)
+{
+    ui->hexView->clear();
+    BaseBox* box = getItemBox(item);
+    if(box == NULL)
+        return;
+
+    this->displayHexFromReader(reader, box->start_pos, box->size);
 }
