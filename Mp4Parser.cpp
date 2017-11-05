@@ -189,6 +189,8 @@ void mp4Parser::DeleteStream(Stream* s)
         delete[] s->stsc_data;
     if(s->stsz_data)
         delete[] s->stsz_data;
+    if(s->sample_position)
+        delete[] s->sample_position;
 
     delete s;
 }
@@ -221,5 +223,50 @@ int mp4Parser::Parse(const char* filename)
         cur_pos += box->size;
         io->SetPos(cur_pos);
     }
+
+    for(int i=0;i<this->stream_num;i++)
+    {
+        this->GetSamplePosition(this->streams[i]);
+    }
     return 0;
+}
+
+void mp4Parser::GetSamplePosition(Stream* s)
+{
+    int sample_count = s->stsz_count;
+	int chunk_count = s->stco_count;
+
+    if(sample_count > 0)
+    {
+        s->sample_position = new uint64_t[sample_count];
+    }
+
+	int remain_chunk_count = chunk_count;
+	int sample_index = 0;
+    for(int i=0;i<s->stsc_count;i++)
+    {
+		int c_count = 0;
+		if (i != s->stsc_count - 1)
+		{
+			c_count = s->stsc_data[i + 1].first_chunk - s->stsc_data[i].first_chunk;
+			remain_chunk_count -= c_count;
+		}
+		else
+		{
+			c_count = remain_chunk_count;
+		}
+		for (int j = 0; j < c_count; j++)
+		{
+			int chunk_index = s->stsc_data[i].first_chunk + j;
+			uint64_t offset = s->stco_data[chunk_index - 1];
+			for (int k = 0; k < s->stsc_data[i].samples_per_chunk; k++)
+			{
+				s->sample_position[sample_index] = offset;
+				offset += s->stsz_data[sample_index];
+				sample_index++;
+				if (sample_index > sample_count)
+					return;
+			}
+		}
+    }
 }

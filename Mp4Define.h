@@ -57,6 +57,8 @@ typedef struct Stream
     uint32_t default_sample_size;
     uint32_t stsz_count;
     uint32_t* stsz_data;
+
+    uint64_t* sample_position;
 }Stream;
 
 

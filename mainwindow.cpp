@@ -73,7 +73,6 @@ char get_printable_char(unsigned char c)
 
 void MainWindow::displayHexFromReader(class FileReader* reader, int start, int len)
 {
-    len = MIN(len, 1024);
     unsigned char* buffer = new unsigned char[len];
     reader->SetPos(start);
     reader->ReadBuffer((char*)buffer, len);
@@ -86,7 +85,7 @@ void MainWindow::displayHex(unsigned char* pData, int len)
 {
     Q_ASSERT(pData && len >= 0);
 
-    len = MIN(len, 1024);
+	len = MIN(len, 4096);
     int rows = len / 16 + (len%16==0?0:1);
     int index = 0;
     for(int i=0;i<rows;i++)

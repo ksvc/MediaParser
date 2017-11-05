@@ -27,6 +27,8 @@ public:
     void DestroyBox(BaseBox* root);
     Stream* AddStream();
     void DeleteStream(Stream* stream);
+
+    void GetSamplePosition(Stream* s);
 public:
     FileReader* io;
     FileReader* inner_io;
