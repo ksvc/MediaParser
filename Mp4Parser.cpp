@@ -14,6 +14,7 @@
 #include "ChunkOffsetBox.h"
 #include "SampleToChunkBox.h"
 #include "SampleSizeBox.h"
+#include "MetaBox.h"
 
 #include <stdio.h>
 #include <QtGlobal>
@@ -112,6 +113,9 @@ BaseBox* mp4Parser::AllocBox(uint32_t type, uint32_t size)
     case FOURCC_stsz:
     case FOURCC_stz2:
         box = new SampleSizeBox(type, size);
+        break;
+    case FOURCC_meta:
+        box = new MetaBox(type, size);
         break;
     default:
         box = new BaseBox(type, size);
