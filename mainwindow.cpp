@@ -41,12 +41,17 @@ void MainWindow::on_openButton_clicked()
         QString fileName = files.at(0);
         this->ui->filePathEdit->setText(fileName);
 
-        if(this->reader == NULL)
-        {
-            this->reader = new FileReader();
-            this->parser = new mp4Parser(reader);
-        }
+		if (parser != NULL)
+		{
+			delete parser;
+		}
+		if (reader != NULL)
+		{
+			delete reader;
+		}
 
+        this->reader = new FileReader();
+        this->parser = new mp4Parser(reader);
 
         parser->Parse(fileName.toLocal8Bit().data());
         mp4Display display;

@@ -23,6 +23,9 @@
 #define FOURCC_stz2 MKTAG('s','t','z','2')
 #define FOURCC_udta MKTAG('u','d','t','a')
 #define FOURCC_meta MKTAG('m','e','t','a')
+#define FOURCC_dinf MKTAG('d','i','n','f')
+#define FOURCC_iprp MKTAG('i','p','r','p')
+#define FOURCC_ipco MKTAG('i','p','c','o')
 
 
 #define HANDLER_VIDEO MKTAG('v','i','d','e')
