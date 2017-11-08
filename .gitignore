@@ -3,6 +3,8 @@
 *.sdf
 *.vcxproj
 *.vcxproj.filters
+*.sln
+*.suo
 debug/
 GeneratedFiles/
 Win32/

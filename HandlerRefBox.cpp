@@ -14,17 +14,20 @@ HandlerRefBox::~HandlerRefBox()
 
 int HandlerRefBox::Parse(class mp4Parser* parser, uint32_t start_pos)
 {
-    FileReader* io = parser->io;
-    io->SetPos(start_pos);
+	FileReader* io = parser->io;
+	io->SetPos(start_pos);
 
-    Stream* s = parser->streams[parser->stream_num-1];
-
+	Stream* s = NULL;
+	if (parser->stream_num > 0)
+		s = parser->streams[parser->stream_num - 1];
+    
     io->Read8(); //version
     io->Read24(); //flags
     io->Read32(); //pre_define
 
     uint32_t type = io->Read32();
-    s->type = type;
+	if (s)
+		s->type = type;
 
     io->Skip(12);
 
@@ -34,7 +37,8 @@ int HandlerRefBox::Parse(class mp4Parser* parser, uint32_t start_pos)
         char* name = new char[name_len+1];
         memset(name, 0, name_len+1);
         io->ReadBuffer(name, name_len);
-        s->handler = name;
+		if (s)
+			s->handler = name;
     }
     return 0;
 }
