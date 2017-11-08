@@ -123,12 +123,19 @@ BaseBox* mp4Parser::AllocBox(uint32_t type, uint32_t size)
 
 BaseBox* mp4Parser::ReadBox(uint32_t start_pos)
 {
+	int index = 0;
     uint32_t size = io->Read32();
     uint32_t type = io->Read32();
+	index = 8;
+	if (size == 1)
+	{
+		index += 8;
+		size = io->Read64();
+	}
     BaseBox* box = AllocBox(type, size);
 
     box->SetPosition(start_pos);
-    box->Parse(this, start_pos+8);
+    box->Parse(this, start_pos+index);
 
     return box;
 }
