@@ -34,33 +34,27 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_openButton_clicked()
 {
-//    QFileDialog *dlg = new QFileDialog(this);
-//    if (dlg->exec() == QFileDialog::Accepted)
-//    {
-//        QStringList files = dlg->selectedFiles();
-//        QString fileName = files.at(0);
-//        this->ui->filePathEdit->setText(fileName);
-
-//        mp4Parser parser;
-//        parser.Parse(fileName.toLocal8Bit().data());
-//        mp4Display display;
-//        display.Display(ui->structTree, ui->hexView, &parser);
-//    }
-
-    if(this->reader == NULL)
+    QFileDialog *dlg = new QFileDialog(this);
+    if (dlg->exec() == QFileDialog::Accepted)
     {
-        this->reader = new FileReader();
-        this->parser = new mp4Parser(reader);
+        QStringList files = dlg->selectedFiles();
+        QString fileName = files.at(0);
+        this->ui->filePathEdit->setText(fileName);
+
+        if(this->reader == NULL)
+        {
+            this->reader = new FileReader();
+            this->parser = new mp4Parser(reader);
+        }
+
+
+        parser->Parse(fileName.toLocal8Bit().data());
+        mp4Display display;
+        display.Display(ui->structTree, ui->baseInfoTextEdit, parser);
+        displayHexFromReader(reader, 0, 1024);
     }
 
-#if defined(Q_OS_WIN32)
-    parser->Parse("d:\\1.mp4");
-#else
-    parser->Parse("/Users/mayudong/Movies/1.mp4");
-#endif
-    mp4Display display;
-    display.Display(ui->structTree, ui->baseInfoTextEdit, parser);
-    displayHexFromReader(reader, 0, 1024);
+
 }
 
 char get_printable_char(unsigned char c)
