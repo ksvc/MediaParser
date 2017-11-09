@@ -64,9 +64,9 @@ int ItemLocationBox::Parse(class mp4Parser* parser, uint32_t start_pos)
         }
 
         item_entries[i].data_reference_index = io->Read16();
-        if(item_entries[i].construction_method == 4)
+        if(base_offset_size == 4)
             item_entries[i].base_offset = io->Read32();
-        else if(item_entries[i].construction_method == 8)
+		else if (base_offset_size == 8)
             item_entries[i].base_offset = io->Read64();
 
         item_entries[i].extent_count = io->Read16();
