@@ -48,7 +48,8 @@ SOURCES += \
     MetaBox.cpp \
     PrimaryItemBox.cpp \
     ItemInfoBox.cpp \
-    ItemReferenceBox.cpp
+    ItemReferenceBox.cpp \
+    ItemLocationBox.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -76,7 +77,8 @@ HEADERS += \
     MetaBox.h \
     PrimaryItemBox.h \
     ItemInfoBox.h \
-    ItemReferenceBox.h
+    ItemReferenceBox.h \
+    ItemLocationBox.h
 
 FORMS += \
     MainWindow.ui

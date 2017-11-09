@@ -18,6 +18,7 @@
 #include "PrimaryItemBox.h"
 #include "ItemInfoBox.h"
 #include "ItemReferenceBox.h"
+#include "ItemLocationBox.h"
 
 #include <stdio.h>
 #include <QtGlobal>
@@ -131,6 +132,9 @@ BaseBox* mp4Parser::AllocBox(uint32_t type, uint32_t size)
         break;
     case FOURCC_iref:
         box = new ItemReferenceBox(type, size);
+        break;
+    case FOURCC_iloc:
+        box = new ItemLocationBox(type, size);
         break;
     default:
         box = new BaseBox(type, size);
