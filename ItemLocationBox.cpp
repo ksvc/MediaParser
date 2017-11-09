@@ -98,17 +98,22 @@ int ItemLocationBox::Parse(class mp4Parser* parser, uint32_t start_pos)
 
 string ItemLocationBox::GetDescription()
 {
-    char tmp[1024];
+    char tmp[4096];
     sprintf(tmp,
-            "offsest_size = %d\n"
-            "length_size = %d\n"
-            "base_offset_size = %d\n"
-            "index_size = %d\n"
             "item_count = %d\n",
-            offset_size,
-            length_size,
-            base_offset_size,
-            index_size,
             item_count);
+	for (int i = 0; i < item_count; i++)
+	{
+		if (item_entries[i].extent_count > 0)
+		{
+			sprintf(tmp, "%s"
+				"id = %d, method = %d, offset = %lld, length = %lld\n",
+				tmp,
+				item_entries[i].item_id,
+				item_entries[i].construction_method,
+				item_entries[i].extents[0].extend_offset,
+				item_entries[i].extents[0].extend_length);
+		}
+	}
     return tmp;
 }
