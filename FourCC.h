@@ -25,6 +25,7 @@
 #define FOURCC_meta MKTAG('m','e','t','a')
 #define FOURCC_dinf MKTAG('d','i','n','f')
 #define FOURCC_pitm MKTAG('p','i','t','m')
+#define FOURCC_iinf MKTAG('i','i','n','f')
 
 //heif
 #define FOURCC_iprp MKTAG('i','p','r','p')

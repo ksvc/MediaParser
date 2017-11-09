@@ -46,7 +46,8 @@ SOURCES += \
     SampleToChunkBox.cpp \
     SampleSizeBox.cpp \
     MetaBox.cpp \
-    PrimaryItemBox.cpp
+    PrimaryItemBox.cpp \
+    ItemInfoBox.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -72,7 +73,8 @@ HEADERS += \
     SampleToChunkBox.h \
     SampleSizeBox.h \
     MetaBox.h \
-    PrimaryItemBox.h
+    PrimaryItemBox.h \
+    ItemInfoBox.h
 
 FORMS += \
     MainWindow.ui
