@@ -21,7 +21,7 @@ int PrimaryItemBox::Parse(class mp4Parser* parser, uint32_t start_pos)
     {
         item_id = io->Read32();
     }
-
+	return 0;
 }
 
 string PrimaryItemBox::GetDescription()
