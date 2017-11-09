@@ -39,6 +39,11 @@ int BaseBox::Parse(class mp4Parser* parser, uint32_t start_pos)
     return 0;
 }
 
+string BaseBox::GetDescription()
+{
+    return "";
+}
+
 void BaseBox::AddChild(BaseBox* child)
 {
     if(this->childs == NULL)

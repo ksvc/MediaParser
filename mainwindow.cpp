@@ -164,5 +164,6 @@ void MainWindow::on_structTree_itemClicked(QTreeWidgetItem * item, int column)
     if(box == NULL)
         return;
 
+    ui->baseInfoTextEdit->setText(box->GetDescription().c_str());
     this->displayHexFromReader(reader, box->start_pos, box->size);
 }

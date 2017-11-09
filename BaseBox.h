@@ -4,6 +4,9 @@
 #include <stdint.h>
 #include "FourCC.h"
 #include "Mp4Parser.h"
+#include <string>
+
+using namespace std;
 
 class BaseBox
 {
@@ -17,7 +20,7 @@ public:
 
 public:
     virtual int Parse(class mp4Parser* parser, uint32_t start_pos);
-
+    virtual string GetDescription();
 public:
     uint32_t size;
     uint32_t type;

@@ -45,7 +45,8 @@ SOURCES += \
     ChunkOffsetBox.cpp \
     SampleToChunkBox.cpp \
     SampleSizeBox.cpp \
-    MetaBox.cpp
+    MetaBox.cpp \
+    PrimaryItemBox.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -70,7 +71,8 @@ HEADERS += \
     ChunkOffsetBox.h \
     SampleToChunkBox.h \
     SampleSizeBox.h \
-    MetaBox.h
+    MetaBox.h \
+    PrimaryItemBox.h
 
 FORMS += \
     MainWindow.ui
