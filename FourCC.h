@@ -3,6 +3,7 @@
 
 #define MKTAG(a,b,c,d) ((d) | ((c) << 8) | ((b) << 16) | ((unsigned)(a) << 24))
 
+#define FOURCC_ftyp MKTAG('f','t','y','p')
 #define FOURCC_moov MKTAG('m','o','o','v')
 #define FOURCC_mvhd MKTAG('m','v','h','d')
 #define FOURCC_trak MKTAG('t','r','a','k')
@@ -26,6 +27,7 @@
 #define FOURCC_dinf MKTAG('d','i','n','f')
 #define FOURCC_pitm MKTAG('p','i','t','m')
 #define FOURCC_iinf MKTAG('i','i','n','f')
+#define FOURCC_iref MKTAG('i','r','e','f')
 
 //heif
 #define FOURCC_iprp MKTAG('i','p','r','p')

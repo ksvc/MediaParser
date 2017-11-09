@@ -17,6 +17,7 @@
 #include "MetaBox.h"
 #include "PrimaryItemBox.h"
 #include "ItemInfoBox.h"
+#include "ItemReferenceBox.h"
 
 #include <stdio.h>
 #include <QtGlobal>
@@ -128,6 +129,9 @@ BaseBox* mp4Parser::AllocBox(uint32_t type, uint32_t size)
     case FOURCC_iinf:
         box = new ItemInfoBox(type, size);
         break;
+    case FOURCC_iref:
+        box = new ItemReferenceBox(type, size);
+        break;
     default:
         box = new BaseBox(type, size);
         break;
@@ -233,10 +237,17 @@ int mp4Parser::Parse(const char* filename)
 
     uint32_t cur_pos = 0;
     int file_size = io->GetLength();
-    if(file_size <= 0)
+    if(file_size <= 8)
     {
         return -1;
     }
+    io->Read32();
+    uint32_t ftyp = io->Read32();
+    if(ftyp != FOURCC_ftyp)
+    {
+        return -1;
+    }
+    io->SetPos(0);
 
     while(cur_pos < file_size)
     {

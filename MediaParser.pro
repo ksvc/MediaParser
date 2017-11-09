@@ -47,7 +47,8 @@ SOURCES += \
     SampleSizeBox.cpp \
     MetaBox.cpp \
     PrimaryItemBox.cpp \
-    ItemInfoBox.cpp
+    ItemInfoBox.cpp \
+    ItemReferenceBox.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -74,7 +75,8 @@ HEADERS += \
     SampleSizeBox.h \
     MetaBox.h \
     PrimaryItemBox.h \
-    ItemInfoBox.h
+    ItemInfoBox.h \
+    ItemReferenceBox.h
 
 FORMS += \
     MainWindow.ui
