@@ -19,6 +19,8 @@
 #include "ItemInfoBox.h"
 #include "ItemReferenceBox.h"
 #include "ItemLocationBox.h"
+#include "ItemPropertyContainerBox.h"
+#include "ItemPropertyAssociationBox.h"
 
 #include <stdio.h>
 #include <QtGlobal>
@@ -80,7 +82,6 @@ BaseBox* mp4Parser::AllocBox(uint32_t type, uint32_t size)
     case FOURCC_stbl:
     case FOURCC_udta:
 	case FOURCC_iprp:
-	case FOURCC_ipco:
         box = new DefaultContainerBox(type, size);
         break;
     case FOURCC_mvhd:
@@ -135,6 +136,12 @@ BaseBox* mp4Parser::AllocBox(uint32_t type, uint32_t size)
         break;
     case FOURCC_iloc:
         box = new ItemLocationBox(type, size);
+        break;
+    case FOURCC_ipco:
+        box = new ItemPropertyContainerBox(type, size);
+        break;
+    case FOURCC_ipma:
+        box = new ItemPropertyAssociationBox(type, size);
         break;
     default:
         box = new BaseBox(type, size);

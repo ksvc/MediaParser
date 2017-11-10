@@ -33,6 +33,7 @@
 //heif
 #define FOURCC_iprp MKTAG('i','p','r','p')
 #define FOURCC_ipco MKTAG('i','p','c','o')
+#define FOURCC_ipma MKTAG('i','p','m','a')
 
 
 #define HANDLER_VIDEO MKTAG('v','i','d','e')

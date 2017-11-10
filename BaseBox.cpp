@@ -41,7 +41,9 @@ int BaseBox::Parse(class mp4Parser* parser, uint32_t start_pos)
 
 string BaseBox::GetDescription()
 {
-    return "";
+    char tmp[128];
+    sprintf(tmp, "offset = %d, len = %d\n", start_pos, size);
+    return tmp;
 }
 
 void BaseBox::AddChild(BaseBox* child)
