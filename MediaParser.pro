@@ -51,7 +51,8 @@ SOURCES += \
     ItemReferenceBox.cpp \
     ItemLocationBox.cpp \
     ItemPropertyContainerBox.cpp \
-    ItemPropertyAssociationBox.cpp
+    ItemPropertyAssociationBox.cpp \
+    SingleItemTypeReferenceBox.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -82,7 +83,8 @@ HEADERS += \
     ItemReferenceBox.h \
     ItemLocationBox.h \
     ItemPropertyContainerBox.h \
-    ItemPropertyAssociationBox.h
+    ItemPropertyAssociationBox.h \
+    SingleItemTypeReferenceBox.h
 
 FORMS += \
     MainWindow.ui

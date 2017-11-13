@@ -5,6 +5,7 @@
 #include "FourCC.h"
 #include "Mp4Parser.h"
 #include <string>
+#include <sstream>
 
 using namespace std;
 
