@@ -21,6 +21,10 @@ MainWindow::MainWindow(QWidget *parent) :
     this->reader = NULL;
     this->parser = NULL;
     ui->setupUi(this);
+#ifdef Q_OS_DARWIN
+    QFont font("SimSun",14,QFont::Normal);
+    ui->hexView->setFont(font);
+#endif
 }
 
 MainWindow::~MainWindow()
