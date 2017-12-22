@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "FileReader.h"
+#include "../FileReader.h"
 #include "Mp4Define.h"
 
 class BaseBox;

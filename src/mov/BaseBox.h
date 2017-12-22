@@ -2,7 +2,7 @@
 #define BASEBOX_H
 
 #include <stdint.h>
-#include "FourCC.h"
+#include "../FourCC.h"
 #include "Mp4Parser.h"
 #include <string>
 #include <sstream>

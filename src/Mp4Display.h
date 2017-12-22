@@ -4,8 +4,8 @@
 #include <QTreeWidget>
 #include <QTextEdit>
 #include <QtGlobal>
-#include "Mp4Parser.h"
-#include "BaseBox.h"
+#include "mov/Mp4Parser.h"
+#include "mov/BaseBox.h"
 
 class mp4Display
 {

@@ -5,8 +5,8 @@
 #include <qtextcursor.h>
 #include <qfiledialog.h>
 #include <QtGlobal>
-#include "BaseBox.h"
-#include "Mp4Parser.h"
+#include "mov/BaseBox.h"
+#include "mov/Mp4Parser.h"
 #include "Mp4Display.h"
 
 #define MIN(a, b) (((a)<(b))?(a):(b))
