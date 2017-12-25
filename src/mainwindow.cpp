@@ -25,6 +25,10 @@ MainWindow::MainWindow(QWidget *parent) :
     QFont font("SimSun",14,QFont::Normal);
     ui->hexView->setFont(font);
 #endif
+
+    ResetSampleInfo();
+
+    ui->tabWidget->setCurrentIndex(0);
 }
 
 MainWindow::~MainWindow()
@@ -34,6 +38,18 @@ MainWindow::~MainWindow()
     if(this->parser)
         delete this->parser;
     delete ui;
+}
+
+void MainWindow::ResetSampleInfo()
+{
+    bShowVideoSample = true;
+    sampleCount = 0;
+    curSample = 0;
+
+    ui->lineEditSample->setText("0/0");
+    ui->radioAudio->setChecked(false);
+    ui->radioVideo->setChecked(true);
+    ui->textEditSampleInfo->clear();
 }
 
 void MainWindow::on_openButton_clicked()
@@ -57,12 +73,17 @@ void MainWindow::on_openButton_clicked()
         this->reader = new FileReader();
         this->parser = new mp4Parser(reader);
 
+        ResetSampleInfo();
+        ui->tabWidget->setCurrentIndex(0);
+        ui->hexView->clear();
+
         parser->Parse(fileName.toLocal8Bit().data());
         mp4Display display;
         display.Display(ui->structTree, ui->baseInfoTextEdit, parser);
         displayHexFromReader(reader, 0, 1024);
-    }
 
+
+    }
 
 }
 
@@ -170,4 +191,98 @@ void MainWindow::on_structTree_itemClicked(QTreeWidgetItem * item, int column)
 
     ui->baseInfoTextEdit->setText(box->GetDescription().c_str());
     this->displayHexFromReader(reader, box->start_pos, box->size);
+}
+
+void MainWindow::on_radioVideo_clicked()
+{
+    this->bShowVideoSample = true;
+    on_homeButton_clicked();
+}
+
+void MainWindow::on_radioAudio_clicked()
+{
+    this->bShowVideoSample = false;
+    on_homeButton_clicked();
+}
+
+Stream* MainWindow::GetShowingStream()
+{
+    if(this->parser == NULL)
+        return NULL;
+
+    Stream* s = NULL;
+    if(this->bShowVideoSample)
+        s = this->parser->GetVideoStream();
+    else
+        s = this->parser->GetAudioStream();
+
+    return s;
+}
+
+
+void MainWindow::ShowSample(Stream* s, int index)
+{
+    this->sampleCount = s->stsz_count;
+    if(index > this->sampleCount)
+        index = this->sampleCount;
+    if(index <= 0)
+        index = 1;
+
+    this->curSample = index;
+    char tmp[128];
+    sprintf(tmp, "%d/%d", this->curSample, this->sampleCount);
+    ui->lineEditSample->setText(tmp);
+
+    this->ui->hexView->clear();
+    int start = s->sample_position[index-1];
+    int len = s->stsz_data[index-1];
+    this->displayHexFromReader(this->reader, start, len);
+
+    char sampleInfo[1024];
+    sprintf(sampleInfo, "Position = %d\nLength = %d (0x%02X)\n", start, len, len);
+    ui->textEditSampleInfo->setText(sampleInfo);
+}
+
+void MainWindow::on_homeButton_clicked()
+{
+    Stream* s = GetShowingStream();
+    if(s == NULL)
+        return;
+
+    ShowSample(s, 1);
+}
+
+void MainWindow::on_endButton_clicked()
+{
+    Stream* s = GetShowingStream();
+    if(s == NULL)
+        return;
+
+    ShowSample(s, s->stsz_count);
+}
+
+void MainWindow::on_prevButton_clicked()
+{
+    Stream* s = GetShowingStream();
+    if(s == NULL)
+        return;
+
+    ShowSample(s, this->curSample-1);
+}
+
+void MainWindow::on_nextButton_clicked()
+{
+    Stream* s = GetShowingStream();
+    if(s == NULL)
+        return;
+
+    ShowSample(s, this->curSample+1);
+}
+
+void MainWindow::on_tabWidget_currentChanged(int index)
+{
+    if(index == 1 && curSample == 0)
+    {
+        on_homeButton_clicked();
+    }
 }

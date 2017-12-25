@@ -24,13 +24,32 @@ private:
     void clearDisplay();
     BaseBox* getItemBox(QTreeWidgetItem* item);
 
+    void ResetSampleInfo();
+    void ShowSample(struct Stream* s, int index);
+    struct Stream* GetShowingStream();
+
 private slots:
     void on_openButton_clicked();
     void on_structTree_itemClicked(QTreeWidgetItem * item, int column);
 
+    void on_homeButton_clicked();
+    void on_endButton_clicked();
+    void on_prevButton_clicked();
+    void on_nextButton_clicked();
+
+    void on_radioVideo_clicked();
+    void on_radioAudio_clicked();
+
+    void on_tabWidget_currentChanged(int index);
+
 private:
     class FileReader* reader;
     class mp4Parser* parser;
+
+    bool bShowVideoSample;
+
+    int sampleCount;
+    int curSample;
 private:
     Ui::MainWindow *ui;
 };

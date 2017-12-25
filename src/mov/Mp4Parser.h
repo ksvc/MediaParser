@@ -29,6 +29,8 @@ public:
     void DeleteStream(Stream* stream);
 
     void GetSamplePosition(Stream* s);
+    Stream* GetVideoStream();
+    Stream* GetAudioStream();
 public:
     FileReader* io;
     FileReader* inner_io;

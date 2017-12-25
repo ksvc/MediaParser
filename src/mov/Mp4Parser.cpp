@@ -314,3 +314,23 @@ void mp4Parser::GetSamplePosition(Stream* s)
 		}
     }
 }
+
+Stream* mp4Parser::GetVideoStream()
+{
+    for(int i=0;i<this->stream_num;i++)
+    {
+        if(this->streams[i]->type == HANDLER_VIDEO)
+            return this->streams[i];
+    }
+    return NULL;
+}
+
+Stream* mp4Parser::GetAudioStream()
+{
+    for(int i=0;i<this->stream_num;i++)
+    {
+        if(this->streams[i]->type == HANDLER_AUDIO)
+            return this->streams[i];
+    }
+    return NULL;
+}
