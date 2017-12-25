@@ -26,7 +26,7 @@ int HandlerRefBox::Parse(class mp4Parser* parser, uint32_t start_pos)
     io->Read32(); //pre_define
 
     uint32_t type = io->Read32();
-	if (s)
+    if (s && s->type == 0)
 		s->type = type;
 
     io->Skip(12);
