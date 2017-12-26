@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>MediaParser</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -114,7 +114,7 @@
              <attribute name="title">
               <string>Sample</string>
              </attribute>
-             <widget class="QWidget" name="">
+             <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
                 <x>10</x>
