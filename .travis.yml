@@ -10,7 +10,7 @@ install:
   - brew install qt5
   
 before_script:
-  - echo 'export PATH="/usr/local/opt/qt/bin:$PATH"' >> ~/.bash_profile
+  - brew link --force qt5
   - which qmake
 
 script:
