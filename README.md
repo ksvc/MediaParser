@@ -7,7 +7,7 @@ Charge Type:<b>free of charge</b></pre>
 What is MediaParser?
 ----------------
 
-An open source multimedia parser only for macOSX, just like mp4info tool on Windows platform.
+An open source multimedia parser based on the Qt framework, just like mp4info tool on Windows platform.
 
 License
 ----------------
