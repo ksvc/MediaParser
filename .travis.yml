@@ -1,0 +1,31 @@
+language: cpp
+
+os:
+  - osx
+
+compiler:
+  - clang
+
+install:
+  - brew install qt5
+  
+before_script:
+  - echo 'export PATH="/usr/local/opt/qt/bin:$PATH"' >> ~/.bash_profile
+  - which qmake
+
+script:
+  - mkdir -p build && cd build
+  - qmake ../
+  - make
+
+before_deploy:
+  - zip -r MediaParser.${TRAVIS_TAG}.zip MediaParser.app
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  overwrite: true
+  file: MediaParser.${TRAVIS_TAG}.zip
+  skip_cleanup: true
+  on:
+    tags: true
