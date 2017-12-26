@@ -1,5 +1,8 @@
 MediaParser
 ===========
+[![Build Status](https://travis-ci.org/ksvc/MediaParser.svg?branch=master)](https://travis-ci.org/ksvc/MediaParser)
+[![Latest release](https://img.shields.io/github/release/ksvc/MediaParser.svg)](https://github.com/ksvc/MediaParser/releases/latest)
+
 
 <pre>Source Type:<b>Open Source</b>
 Charge Type:<b>free of charge</b></pre>
@@ -31,8 +34,10 @@ qmake ..
 make -j8
 ```
 After build process finished, there is a target app named MediaParser.app.
+#### 2. Download app
+Instead of building app from sources, you can download app directly from [release](https://github.com/ksvc/MediaParser/releases/latest).
 
-#### 2. Run MediaParser.app
+#### 3. Run MediaParser.app
 ![MediaParser.app Snapshoot](https://raw.githubusercontent.com/wiki/ksvc/MediaParser/images/snapshot.png)
 The architecture about the media file will be listed in the left frame of the MediaParser.app， after pressed "open file" to specify the input file.
 
