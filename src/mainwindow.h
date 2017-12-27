@@ -41,6 +41,7 @@ private slots:
     void on_radioAudio_clicked();
 
     void on_tabWidget_currentChanged(int index);
+    void on_lineEditSample_returnPressed();
 
 private:
     class FileReader* reader;

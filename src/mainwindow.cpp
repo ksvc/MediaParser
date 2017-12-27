@@ -286,3 +286,25 @@ void MainWindow::on_tabWidget_currentChanged(int index)
         on_homeButton_clicked();
     }
 }
+
+void MainWindow::on_lineEditSample_returnPressed()
+{
+    Stream* s = GetShowingStream();
+    if(s == NULL)
+        return;
+
+    QString strSampleIndex = ui->lineEditSample->text();
+    QString strIndex = strSampleIndex;
+    if(strSampleIndex.contains('/'))
+    {
+        int left = strSampleIndex.indexOf('/');
+        strIndex = strSampleIndex.left(left);
+    }
+    int index = strIndex.toInt();
+    if(index <= 0)
+        index = 1;
+    else if(index > this->sampleCount)
+        index = this->sampleCount;
+
+    ShowSample(s, index);
+}
